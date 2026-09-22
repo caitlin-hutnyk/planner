@@ -1,11 +1,16 @@
-# Summer 2026 · Weekend Planner
+# Summer & Fall 2026 · Weekend Planner
 
-A single-file, self-contained calendar for planning weekends from June through the
-September Europe trip. No build, no dependencies — just open `index.html`.
+Two single-file, self-contained calendars for planning weekends. No build, no
+dependencies — just open the HTML file.
+
+- **Summer** (`index.html`) — Jun 1 → Sep 21, ending with the Europe trip
+- **Fall** (`fall.html`) — Sep 1 → Jan 1 2027, starting with the Europe trip
+
+Both are served by GitHub Pages from `main`, and link to each other.
 
 ## Features
 
-- Continuous month-grid calendar (Jun 1 → Sep 30) with multi-day event bars
+- Continuous month-grid calendar with multi-day event bars
 - Weekends + BC stat holidays shaded
 - Status styles: **solid** = confirmed, **dashed outline** = tentative, **underline** = ongoing/background
 - Category colours: music, family, friends, sports, away/travel
@@ -16,6 +21,6 @@ September Europe trip. No build, no dependencies — just open `index.html`.
 
 ## Use
 
-Open `index.html` in any browser. Your notes and edits persist per-device in
+Open `index.html` or `fall.html` in any browser. Your notes and edits persist per-device in
 localStorage (key `summer2026.v2`). The "Reset all edits" button restores the
 original plan.
