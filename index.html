@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#ffe0c2" />
+<meta name="theme-color" content="#f6d2b0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Summer 2026" />
-<title>Summer 2026 · Weekend Planner</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>">
+<meta name="apple-mobile-web-app-title" content="Fall 2026" />
+<title>Fall 2026 · Weekend Planner</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍂</text></svg>">
 <style>
   :root {
-    --bg-1: #fff1e6; --bg-2: #ffe0c2; --bg-3: #cfe9ff;
+    --bg-1: #fff4e8; --bg-2: #f6d2b0; --bg-3: #e3c9d9;
     --ink: #2b2b3a; --ink-soft: #6b6b80;
     --line: #e7e7ef;
     --free: #1faa6b; --free-bg: #e7f8ef; --free-line: #bfe9d3;
@@ -126,9 +126,9 @@
 <body>
 <div class="wrap">
   <header>
-    <nav class="pages"><a href="./" class="on">☀️ Summer</a><a href="fall.html">🍂 Fall</a></nav>
-    <h1><span class="sun">&#9728;&#65039;</span> Summer 2026</h1>
-    <p class="sub">Your weekends from June through the Europe trip. Saturdays, Sundays &amp; holidays are shaded blue.</p>
+    <nav class="pages"><a href="summer.html">☀️ Summer</a><a href="./" class="on">🍂 Fall</a></nav>
+    <h1><span class="sun">🍂</span> Fall 2026</h1>
+    <p class="sub">Your weekends from the Europe trip through New Year's. Saturdays, Sundays &amp; holidays are shaded blue.</p>
   </header>
 
   <div class="stats" id="stats"></div>
@@ -149,55 +149,34 @@
 <script>
 const DAY = 86400000;
 const D = (y, m, d) => new Date(y, m - 1, d);
-const DEPART = D(2026, 9, 1); // Europe departure
 
 const EVENTS = [
-  { id:"free-jun",   t:"Open weekend",            cat:"free",     status:"free",      s:D(2026,6,6),  e:D(2026,6,7) },
-  { id:"sultan",     t:"FIFA Fan Fest",           cat:"music",    status:"confirmed", s:D(2026,7,19), e:D(2026,7,19), note:"4pm" },
-  { id:"anson",      t:"Anson's birthday",        cat:"social",   status:"confirmed", s:D(2026,6,12), e:D(2026,6,12), note:"Birthday on the 12th" },
-  { id:"brohm",      t:"Brohm Loop",               cat:"hike",     status:"confirmed",                 s:D(2026,6,13), e:D(2026,6,13) },
-  { id:"jazz-fest",  t:"🎷 Vancouver Jazz Fest",    cat:"music",    status:"confirmed", s:D(2026,6,19), e:D(2026,7,5),  ongoing:true, note:"Ongoing Jun 19–Jul 5 · not attending every night, but catching a few shows while it's on" },
-  { id:"lb-trip",    t:"Long Beach",                               cat:"travel",   status:"confirmed", away:true,      s:D(2026,6,18), e:D(2026,6,21), note:"Thu night → Sun afternoon" },
-  { id:"apocalypse", t:"Apocalypse",                    cat:"music",    status:"confirmed",                 s:D(2026,6,19), e:D(2026,6,20), note:"Long Beach, CA · Fri–Sat" },
-  { id:"camp-wt",    t:"Wendy Thompson Hut",       cat:"hike",     status:"confirmed", away:true,      s:D(2026,6,27), e:D(2026,6,28), note:"With friends · overnight hut trip" },
-  { id:"seymour",    t:"Mount Seymour",            cat:"hike",     status:"confirmed",                 s:D(2026,6,30), e:D(2026,6,30) },
-
-  { id:"nicola",     t:"Nicola arrives",           cat:"social",   status:"confirmed", ongoing:true,   s:D(2026,7,2),  e:D(2026,7,2) },
-  { id:"fvded",      t:"FVDED",                   cat:"music",    status:"confirmed",                 s:D(2026,7,3),  e:D(2026,7,4),  note:"Festival" },
-  { id:"needle",     t:"Needle Peak",              cat:"hike",     status:"confirmed",                 s:D(2026,7,7),  e:D(2026,7,7) },
-  { id:"island-dad", t:"Courtenay w/ Dad",          cat:"travel",   status:"confirmed", away:true,      s:D(2026,7,11), e:D(2026,7,13), note:"Back Monday morning" },
-  { id:"becher",     t:"Mt Becher",                cat:"hike",     status:"confirmed",                 s:D(2026,7,12), e:D(2026,7,12), note:"Near Courtenay" },
-  { id:"gott",       t:"Mt Weart",                 cat:"hike",     status:"confirmed",                 s:D(2026,7,17), e:D(2026,7,18) },
-  { id:"free-jul",   t:"Open weekend",            cat:"free",     status:"free",                      s:D(2026,7,18), e:D(2026,7,19) },
-  { id:"merina-yvr", t:"Merina in town",          cat:"social",   status:"confirmed", ongoing:true,   s:D(2026,7,23), e:D(2026,7,26), note:"In town Jul 23–26" },
-  { id:"merina-stay",t:"Panorama w/ Merina",      cat:"hike",     status:"confirmed",                 s:D(2026,7,23), e:D(2026,7,24), note:"With Merina" },
-  { id:"harvey",     t:"Mt Cheam",                 cat:"hike",     status:"confirmed",                 s:D(2026,7,26), e:D(2026,7,26), note:"Was Brunswick + Harvey, switched due to weather" },
-  { id:"crown",      t:"Crown Mountain",           cat:"hike",     status:"confirmed",                 s:D(2026,7,30), e:D(2026,7,30) },
-
-  { id:"cabin",      t:"Sevilla cabin",           cat:"travel",   status:"confirmed", away:true,      s:D(2026,7,31), e:D(2026,8,2),  note:"With friends · flight 5pm Friday" },
-  { id:"tricouni",   t:"Tricouni",                 cat:"hike",     status:"confirmed",                 s:D(2026,8,3),  e:D(2026,8,3) },
-  { id:"isoxo",      t:"ISOxo @ PNE",              cat:"music",    status:"confirmed",                 s:D(2026,8,7),  e:D(2026,8,7) },
-  { id:"tolkien",    t:"Tolkien Range",            cat:"hike",     status:"confirmed",                 s:D(2026,8,8),  e:D(2026,8,10), note:"2 nights, Sat–Mon" },
-  { id:"felix",      t:"Felix in town",            cat:"social",   status:"confirmed", ongoing:true,   s:D(2026,8,14), e:D(2026,8,26) },
-  { id:"camp-felix", t:"Rohr Lake w/ Felix",       cat:"outdoors", status:"confirmed", away:true,      s:D(2026,8,15), e:D(2026,8,16) },
-  { id:"bard",       t:"Bard on the Beach",       cat:"music",    status:"confirmed",                 s:D(2026,8,13), e:D(2026,8,13) },
-  { id:"boston",     t:"Boston (work)",            cat:"travel",   status:"confirmed", away:true,      s:D(2026,8,17), e:D(2026,8,21), note:"Work trip · Mon–Fri, no weekend overlap" },
-  { id:"mom60",      t:"Mom's 60th",              cat:"social",   status:"confirmed", s:D(2026,8,22), e:D(2026,8,23), note:"Family stuff" },
-  { id:"howe-sound", t:"Howe Sound Crest Trail w/ Cam", cat:"hike", status:"confirmed", s:D(2026,8,24), e:D(2026,8,24) },
-  { id:"strokes",    t:"The Strokes",             cat:"music",    status:"confirmed", s:D(2026,8,27), e:D(2026,8,27), note:"Vancouver" },
-  { id:"arcuri",     t:"Jeff Arcuri show",    cat:"music",    status:"confirmed", s:D(2026,8,30), e:D(2026,8,30), note:"Stanley Park · pack for Malta!" },
   { id:"europe",     t:"Europe",                  cat:"travel",   status:"confirmed", away:true,      s:D(2026,9,1),  e:D(2026,9,21), note:"YVR → MLA Sep 1 · ZRH → YVR Sep 21" },
   { id:"wah-malta",  t:"WAH Malta",               cat:"music",    status:"confirmed", s:D(2026,9,4),  e:D(2026,9,6),  note:"DNB festival — the anchor of the trip. Uno Malta + Armier Beach + boat parties." },
+
+  { id:"tomyhoi-camp", t:"Tomyhoi Peak camping",  cat:"hike",     status:"tentative", away:true,      s:D(2026,9,25), e:D(2026,9,27), note:"2 nights · first weekend back from Europe" },
+  { id:"edmonton2",  t:"Edmonton w/ Merina",      cat:"travel",   status:"tentative", away:true,      s:D(2026,10,3), e:D(2026,10,4), note:"Early October weekend" },
+  { id:"mom-surgery", t:"Mom surgery",             cat:"social",   status:"confirmed",                 s:D(2026,10,6), e:D(2026,10,6) },
+  { id:"worship",    t:"WORSHIP",                 cat:"music",    status:"confirmed",                 s:D(2026,10,24), e:D(2026,10,24) },
+  { id:"grace",      t:"Grace show",              cat:"travel",   status:"confirmed", away:true,      s:D(2026,10,25), e:D(2026,10,25), note:"Courtenay" },
+  { id:"seattle",    t:"Seattle",                 cat:"travel",   status:"confirmed", away:true,      s:D(2026,10,30), e:D(2026,11,1) },
+  { id:"boo",        t:"Boo Seattle",             cat:"music",    status:"confirmed",                 s:D(2026,10,30), e:D(2026,10,31), note:"Festival" },
+  { id:"sammy",      t:"Sammy Virji",             cat:"music",    status:"confirmed",                 s:D(2026,11,6),  e:D(2026,11,6) },
+  { id:"alleycvt",   t:"ALLEYCVT",                cat:"music",    status:"confirmed",                 s:D(2026,11,13), e:D(2026,11,13) },
+  { id:"wb-open",    t:"Whistler Blackcomb opens", cat:"hike",    status:"confirmed",                s:D(2026,11,20), e:D(2026,11,20) },
 ];
 
-const RANGE_START = D(2026, 6, 1);
-const RANGE_END = D(2026, 9, 21);
+const RANGE_START = D(2026, 9, 1);
+const RANGE_END = D(2027, 1, 1);
 
 
 const HOLIDAYS = [
-  { name:"Canada Day",                                  short:"Canada Day",            date:D(2026,7,1) },
-  { name:"Civic Holiday",                               short:"Civic Holiday",         date:D(2026,8,3) },
   { name:"Labour Day",                                  short:"Labour Day",            date:D(2026,9,7) },
+  { name:"National Day for Truth and Reconciliation",   short:"Truth & Reconciliation", date:D(2026,9,30) },
+  { name:"Thanksgiving",                                short:"Thanksgiving",           date:D(2026,10,12) },
+  { name:"Remembrance Day",                             short:"Remembrance Day",        date:D(2026,11,11) },
+  { name:"Christmas Day",                               short:"Christmas",              date:D(2026,12,25) },
+  { name:"New Year's Day",                              short:"New Year's",             date:D(2027,1,1) },
 ];
 const holidayFor = date => HOLIDAYS.find(h => sameDay(h.date, date)) || null;
 
@@ -209,21 +188,23 @@ const sameDay = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() ==
 // ---- stats ----
 function renderStats() {
   const today = new Date();
-  const days = Math.max(0, Math.ceil((DEPART - today) / DAY));
-  const open = EVENTS.filter(e => e.cat === "free").length;
+  const days = Math.max(0, Math.ceil((RANGE_END - today) / DAY));
   const tent = EVENTS.filter(e => statusOf(e) === "tentative").length;
-  // Count Saturdays Jun–Sep 21; flag those overlapping an away:true event
-  const summerEnd = D(2026, 9, 21);
-  let totalWknds = 0, awayWknds = 0;
-  for (let d = new Date(RANGE_START); d <= summerEnd; d.setDate(d.getDate() + 1)) {
+  // Count Saturdays Sep 1 → Jan 1; flag those overlapping an away:true event,
+  // and count upcoming ones with nothing planned on Sat or Sun
+  const plannedOn = d => EVENTS.some(ev => ev.cat !== "free" && !ev.ongoing && ev.s <= d && ev.e >= d);
+  let totalWknds = 0, awayWknds = 0, openLeft = 0;
+  for (let d = new Date(RANGE_START); d <= RANGE_END; d.setDate(d.getDate() + 1)) {
     if (d.getDay() !== 6) continue;
     totalWknds++;
     if (EVENTS.some(ev => ev.away && ev.s <= d && ev.e >= d)) awayWknds++;
+    const sun = new Date(d); sun.setDate(d.getDate() + 1);
+    if (sun >= today && !plannedOn(d) && !plannedOn(sun)) openLeft++;
   }
   const stats = [
-    { num: days, lbl: "days until Europe ✈️" },
-    { num: `${awayWknds} / ${totalWknds}`, lbl: "weekends away Jun–Sep" },
-    { num: open, lbl: "fully open weekends" },
+    { num: days, lbl: "days until 2027 🎆" },
+    { num: `${awayWknds} / ${totalWknds}`, lbl: "weekends away Sep–Dec" },
+    { num: openLeft, lbl: "open weekends left" },
     { num: tent, lbl: "tentative plans to confirm" },
   ];
   document.getElementById("stats").innerHTML = stats.map(s =>

@@ -1,10 +1,10 @@
-# Summer & Fall 2026 · Weekend Planner
+# Planner · Weekend calendars
 
 Two single-file, self-contained calendars for planning weekends. No build, no
 dependencies — just open the HTML file.
 
-- **Summer** (`index.html`) — Jun 1 → Sep 21, ending with the Europe trip
-- **Fall** (`fall.html`) — Sep 1 → Jan 1 2027, starting with the Europe trip
+- **Fall** (`index.html`, the default) — Sep 1 → Jan 1 2027, starting with the Europe trip
+- **Summer** (`summer.html`) — Jun 1 → Sep 21, ending with the Europe trip
 
 Both are served by GitHub Pages from `main`, and link to each other.
 
@@ -21,6 +21,6 @@ Both are served by GitHub Pages from `main`, and link to each other.
 
 ## Use
 
-Open `index.html` or `fall.html` in any browser. Your notes and edits persist per-device in
+Open `index.html` or `summer.html` in any browser. Your notes and edits persist per-device in
 localStorage (key `summer2026.v2`). The "Reset all edits" button restores the
 original plan.
