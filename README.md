@@ -1,12 +1,13 @@
 # Planner · Weekend calendars
 
-Two single-file, self-contained calendars for planning weekends. No build, no
+Three single-file, self-contained calendars for planning weekends. No build, no
 dependencies — just open the HTML file.
 
 - **Fall** (`index.html`, the default) — Sep 1 → Jan 1 2027, starting with the Europe trip
+- **Winter** (`winter.html`) — Dec 1 → Apr 30 2027
 - **Summer** (`summer.html`) — Jun 1 → Sep 21, ending with the Europe trip
 
-Both are served by GitHub Pages from `main`, and link to each other.
+All are served by GitHub Pages from `main`, and link to each other.
 
 ## Features
 
