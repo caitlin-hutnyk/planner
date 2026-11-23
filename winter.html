@@ -16,7 +16,7 @@
     --line: #e7e7ef;
     --free: #1faa6b; --free-bg: #e7f8ef; --free-line: #bfe9d3;
     --tentative: #d68a00; --tentative-bg: #fff6e2;
-    --music: #e84a8a; --family: #f08a3c; --away: #4a86e8; --hike: #16a34a; --outdoors: var(--hike); --social: #a688c8; --travel: var(--away);
+    --music: #e84a8a; --family: #f08a3c; --away: #4a86e8; --hike: #16a34a; --outdoors: var(--hike); --social: #a688c8; --travel: var(--away); --work: #5b6b7f;
     --shadow: 0 6px 22px rgba(60, 50, 90, 0.10);
   }
   * { box-sizing: border-box; }
@@ -85,6 +85,7 @@
   .ev-family   { background: var(--family); }
   .ev-outdoors { background: var(--outdoors); }
   .ev-social   { background: var(--social); }
+  .ev-work     { background: var(--work); }
   .ev-travel   { background: var(--away); }
   .ev-hike     { background: var(--hike); }
   .ev-free     { background: var(--free-bg); color: var(--free); border: 1px solid var(--free-line); }
@@ -93,6 +94,7 @@
   .ev-family.tentative   { color: var(--family); }
   .ev-outdoors.tentative { color: var(--outdoors); }
   .ev-social.tentative   { color: var(--social); }
+  .ev-work.tentative     { color: var(--work); }
   .ev-travel.tentative   { color: var(--away); }
   .ev-hike.tentative     { color: var(--hike); }
   .evbar.ongoing { background: transparent !important; border: none; border-bottom: 1.5px solid currentColor; border-radius: 0; margin: 0 4px 2px; padding: 0 3px; font-style: italic; font-weight: 400; }
@@ -100,6 +102,7 @@
   .ev-family.ongoing   { color: var(--family); }
   .ev-outdoors.ongoing { color: var(--outdoors); }
   .ev-social.ongoing   { color: var(--social); }
+  .ev-work.ongoing     { color: var(--work); }
   .ev-travel.ongoing   { color: var(--away); }
 
   @media (max-width: 560px) {
@@ -141,6 +144,7 @@
     <span><i class="dot" style="background:var(--social)"></i> Friends &amp; family</span>
     <span><i class="dot" style="background:var(--hike)"></i> Outdoors</span>
     <span><i class="dot" style="background:var(--away)"></i> Travel</span>
+    <span><i class="dot" style="background:var(--work)"></i> Work</span>
   </div>
 
   <div id="calendar"></div>
@@ -156,6 +160,9 @@ const EVENTS = [
   { id:"whistler-mom", t:"Whistler w/ Mom",       cat:"travel",   status:"confirmed", away:true,      s:D(2026,12,21), e:D(2026,12,26) },
   { id:"ast1",       t:"AST 1",                   cat:"outdoors", status:"confirmed",                 s:D(2027,1,8),   e:D(2027,1,10), note:"Rescheduled from Dec 4–6 (ankle)" },
   { id:"intro-tour", t:"Intro tour",              cat:"outdoors", status:"confirmed",                 s:D(2027,1,16),  e:D(2027,1,16), note:"Rescheduled from Dec 12 (ankle)" },
+  { id:"sko",        t:"SKO",                     cat:"work",     status:"confirmed", ongoing:true,   s:D(2027,1,18),  e:D(2027,1,22), note:"Work" },
+  { id:"ydg",        t:"YDG",                     cat:"music",    status:"tentative",                 s:D(2027,1,22),  e:D(2027,1,22) },
+  { id:"paris",      t:"Paris",                   cat:"travel",   status:"tentative", ongoing:true, away:true, s:D(2027,1,28), e:D(2027,2,5), note:"Dates approximate" },
 ];
 
 const RANGE_START = D(2026, 12, 1);
